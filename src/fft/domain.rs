@@ -33,7 +33,7 @@ use rkyv::{
     archive(bound(serialize = "__S: Serializer + ScratchSpace")),
     archive_attr(derive(CheckBytes))
 )]
-pub(crate) struct EvaluationDomain {
+pub struct EvaluationDomain {
     /// The size of the domain.
     #[cfg_attr(feature = "rkyv-impl", omit_bounds)]
     pub(crate) size: u64,
@@ -119,7 +119,7 @@ pub(crate) mod alloc {
     impl EvaluationDomain {
         /// Construct a domain that is large enough for evaluations of a
         /// polynomial having `num_coeffs` coefficients.
-        pub(crate) fn new(num_coeffs: usize) -> Result<Self, Error> {
+        pub fn new(num_coeffs: usize) -> Result<Self, Error> {
             // Compute the size of our evaluation domain
             let size = num_coeffs.next_power_of_two() as u64;
             let log_size_of_group = size.trailing_zeros();
@@ -288,7 +288,7 @@ pub(crate) mod alloc {
             tau.pow(&[self.size, 0, 0, 0]) - BlsScalar::one()
         }
 
-        /// Given that the domain size is `D`  
+        /// Given that the domain size is `D`
         /// This function computes the `D` evaluation points for
         /// the vanishing polynomial of degree `n` over a coset
         pub(crate) fn compute_vanishing_poly_over_coset(
@@ -313,7 +313,7 @@ pub(crate) mod alloc {
         }
 
         /// Return an iterator over the elements of the domain.
-        pub(crate) fn elements(&self) -> Elements {
+        pub fn elements(&self) -> Elements {
             Elements {
                 cur_elem: BlsScalar::one(),
                 cur_pow: 0,
@@ -380,7 +380,7 @@ pub(crate) mod alloc {
 
     /// An iterator over the elements of the domain.
     #[derive(Debug)]
-    pub(crate) struct Elements {
+    pub struct Elements {
         cur_elem: BlsScalar,
         cur_pow: u64,
         domain: EvaluationDomain,

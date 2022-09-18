@@ -11,14 +11,14 @@
 cfg_if::cfg_if!(
 if #[cfg(feature = "alloc")]
 {
-    pub(crate) mod evaluations;
-    pub(crate) mod polynomial;
+    pub mod evaluations;
+    pub mod polynomial;
 
     pub(crate) use evaluations::Evaluations;
     pub(crate) use polynomial::Polynomial;
 });
 
-pub(crate) mod domain;
+pub mod domain;
 
 #[allow(unused_imports)]
 pub(crate) use domain::EvaluationDomain;

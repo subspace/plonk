@@ -14,7 +14,7 @@
 //! commitment schemes without modification, one would need to remove the
 //! linearizer
 
-mod kzg10;
+pub mod kzg10;
 
 pub(crate) use kzg10::Commitment;
 
@@ -22,7 +22,7 @@ pub(crate) use kzg10::Commitment;
 pub(crate) use kzg10::AggregateProof;
 
 #[cfg(feature = "alloc")]
-pub(crate) use kzg10::{CommitKey, OpeningKey};
+pub use kzg10::{CommitKey, OpeningKey};
 
 #[cfg(feature = "alloc")]
 pub use kzg10::PublicParameters;

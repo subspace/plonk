@@ -36,10 +36,10 @@ use rkyv::{
 pub struct PublicParameters {
     /// Key used to generate proofs for composed circuits.
     #[cfg_attr(feature = "rkyv-impl", omit_bounds)]
-    pub(crate) commit_key: CommitKey,
+    pub commit_key: CommitKey,
     /// Key used to verify proofs for composed circuits.
     #[cfg_attr(feature = "rkyv-impl", omit_bounds)]
-    pub(crate) opening_key: OpeningKey,
+    pub opening_key: OpeningKey,
 }
 
 impl PublicParameters {
@@ -180,7 +180,7 @@ impl PublicParameters {
     ///
     /// Returns an error if the truncated degree is larger than the public
     /// parameters configured degree.
-    pub(crate) fn trim(
+    pub fn trim(
         &self,
         truncated_degree: usize,
     ) -> Result<(CommitKey, OpeningKey), Error> {

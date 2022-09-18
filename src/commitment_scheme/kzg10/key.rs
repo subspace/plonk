@@ -172,7 +172,7 @@ impl CommitKey {
     ///
     /// Returns an error if the polynomial's degree is more than the max degree
     /// of the commit key.
-    pub(crate) fn commit(
+    pub fn commit(
         &self,
         polynomial: &Polynomial,
     ) -> Result<Commitment, Error> {
@@ -223,19 +223,19 @@ impl CommitKey {
 pub struct OpeningKey {
     /// The generator of G1.
     #[cfg_attr(feature = "rkyv-impl", omit_bounds)]
-    pub(crate) g: G1Affine,
+    pub g: G1Affine,
     /// The generator of G2.
     #[cfg_attr(feature = "rkyv-impl", omit_bounds)]
-    pub(crate) h: G2Affine,
+    pub h: G2Affine,
     /// \beta times the above generator of G2.
     #[cfg_attr(feature = "rkyv-impl", omit_bounds)]
-    pub(crate) beta_h: G2Affine,
+    pub beta_h: G2Affine,
     /// The generator of G2, prepared for use in pairings.
     #[cfg_attr(feature = "rkyv-impl", omit_bounds)]
-    pub(crate) prepared_h: G2Prepared,
+    pub prepared_h: G2Prepared,
     /// \beta times the above generator of G2, prepared for use in pairings.
     #[cfg_attr(feature = "rkyv-impl", omit_bounds)]
-    pub(crate) prepared_beta_h: G2Prepared,
+    pub prepared_beta_h: G2Prepared,
 }
 
 impl Serializable<{ G1Affine::SIZE + G2Affine::SIZE * 2 }> for OpeningKey {

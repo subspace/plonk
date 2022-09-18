@@ -72,7 +72,7 @@ if #[cfg(feature = "alloc")] {
     pub mod runtime;
 });
 
-mod fft;
+pub mod fft;
 
 #[cfg(feature = "debug")]
 pub(crate) mod debugger;

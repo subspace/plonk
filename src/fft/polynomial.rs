@@ -31,7 +31,7 @@ use rkyv::{
     archive(bound(serialize = "__S: Serializer + ScratchSpace")),
     archive_attr(derive(CheckBytes))
 )]
-pub(crate) struct Polynomial {
+pub struct Polynomial {
     /// The coefficient of `x^i` is stored at location `i` in `self.coeffs`.
     #[cfg_attr(feature = "rkyv-impl", omit_bounds)]
     pub(crate) coeffs: Vec<BlsScalar>,
@@ -83,7 +83,7 @@ impl Polynomial {
     }
 
     /// Returns the degree of the [`Polynomial`].
-    pub(crate) fn degree(&self) -> usize {
+    pub fn degree(&self) -> usize {
         if self.is_zero() {
             return 0;
         }
@@ -105,7 +105,7 @@ impl Polynomial {
     }
 
     /// Evaluates a [`Polynomial`] at a given point in the field.
-    pub(crate) fn evaluate(&self, point: &BlsScalar) -> BlsScalar {
+    pub fn evaluate(&self, point: &BlsScalar) -> BlsScalar {
         if self.is_zero() {
             return BlsScalar::zero();
         }
